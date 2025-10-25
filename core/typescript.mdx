@@ -1,0 +1,76 @@
+---
+title: "TypeScript"
+description: "TypeScript configuration and usage in Doofus"
+---
+
+## TypeScript Setup
+
+Doofus uses TypeScript for enhanced type safety and developer experience. The TypeScript configuration is defined in `tsconfig.json`.
+
+## Key TypeScript Features
+
+### Strict Mode
+We use TypeScript's strict mode for maximum type safety:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    // Other options...
+  }
+}
+```
+
+### Path Aliases
+The project uses TypeScript path aliases for cleaner imports:
+
+```typescript
+// Instead of
+import { Component } from '../../../components/Component'
+
+// You can use
+import { Component } from '@/components/Component'
+```
+
+### Type Checking
+
+Run type checking using:
+```bash
+npm run typecheck
+# or
+tsc --noEmit
+```
+
+## Working with Types
+
+### Next.js Types
+Next.js 16 provides built-in types for pages, layouts, and components:
+
+```typescript
+import { type NextPage } from 'next'
+import { type AppProps } from 'next/app'
+
+// Page component
+const Page: NextPage = () => {
+  return <div>Page content</div>
+}
+```
+
+### Component Props
+Always define prop types for components:
+
+```typescript
+interface Props {
+  title: string;
+  description?: string;
+}
+
+export function Component({ title, description }: Props) {
+  return (
+    <div>
+      <h1>{title}</h1>
+      {description && <p>{description}</p>}
+    </div>
+  )
+}
+```

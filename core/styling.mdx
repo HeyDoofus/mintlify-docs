@@ -1,0 +1,87 @@
+---
+title: "Styling"
+description: "Using TailwindCSS and dark mode in Doofus"
+---
+
+## TailwindCSS Setup
+
+Doofus uses TailwindCSS for styling. The configuration can be found in `postcss.config.mjs`.
+
+## Using TailwindCSS
+
+### Basic Usage
+
+```tsx
+<div className="flex min-h-screen items-center justify-center bg-zinc-50">
+  <h1 className="text-3xl font-semibold">Hello World</h1>
+</div>
+```
+
+### Dark Mode
+
+Dark mode is implemented using Tailwind's `dark:` prefix. Our app supports system-level dark mode preferences:
+
+```tsx
+<div className="bg-white dark:bg-black">
+  <h1 className="text-black dark:text-zinc-50">
+    Automatic Dark Mode
+  </h1>
+  <p className="text-zinc-600 dark:text-zinc-400">
+    Content adapts to system preferences
+  </p>
+</div>
+```
+
+### Responsive Design
+
+Use Tailwind's responsive prefixes:
+
+```tsx
+<div className="flex-col sm:flex-row">
+  <div className="w-full sm:w-1/2">
+    {/* Content */}
+  </div>
+</div>
+```
+
+Common breakpoints:
+- `sm:` - 640px and up
+- `md:` - 768px and up
+- `lg:` - 1024px and up
+- `xl:` - 1280px and up
+
+### Common Utilities
+
+#### Flexbox
+```tsx
+<div className="flex items-center justify-between">
+  {/* Flex container with centered items and space between */}
+</div>
+```
+
+#### Typography
+```tsx
+<div>
+  <h1 className="text-3xl font-semibold leading-10 tracking-tight">
+    Large Title
+  </h1>
+  <p className="text-lg leading-8">
+    Regular paragraph text
+  </p>
+</div>
+```
+
+#### Spacing
+```tsx
+<div className="py-32 px-16">
+  {/* 32 units padding top/bottom, 16 units left/right */}
+</div>
+```
+
+## Best Practices
+
+1. Use semantic HTML elements
+2. Follow responsive design principles
+3. Implement dark mode for all components
+4. Maintain consistent spacing using Tailwind's spacing scale
+5. Use Tailwind's color palette for consistency
