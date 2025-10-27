@@ -1,0 +1,133 @@
+---
+title: "POST /chatbots"
+description: "Create a new chatbot"
+openapi: "POST /chatbots"
+---
+
+# Create a new chatbot
+
+Create a new chatbot with the specified configuration and settings.
+
+## Base URL
+
+```bash
+POST https://api.doofus.com/v1/chatbots
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request Body
+
+<ParamField body="name" type="string" required>
+  Name of the chatbot
+  
+  Example: `"Support Assistant"`
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description of the chatbot's purpose and capabilities
+  
+  Example: `"24/7 customer support assistant"`
+</ParamField>
+
+<ParamField body="model" type="string" required>
+  AI model to use for the chatbot
+  
+  Example: `"gpt-4o-mini"`
+</ParamField>
+
+<ParamField body="temperature" type="number">
+  Temperature setting for responses (0-1)
+  
+  Example: `0.7`
+</ParamField>
+
+<ParamField body="language" type="string">
+  Primary language for the chatbot
+  
+  Example: `"en"`
+</ParamField>
+
+## Example Request
+
+<CodeGroup>
+
+```bash Request
+curl -X POST https://api.doofus.com/v1/chatbots \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Support Assistant",
+    "description": "24/7 customer support assistant",
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "language": "en"
+  }'
+```
+
+```json Response (201)
+{
+  "id": "bot_abc123",
+  "name": "Support Assistant",
+  "description": "24/7 customer support assistant",
+  "model": "gpt-4o-mini",
+  "temperature": 0.7,
+  "language": "en",
+  "createdAt": "2025-10-25T12:00:00Z",
+  "status": "active"
+}
+```
+
+```json Response (400)
+{
+  "error": "ValidationError",
+  "message": "Invalid request data",
+  "details": {
+    "name": "Name is required"
+  }
+}
+```
+
+```json Response (401)
+{
+  "error": "Unauthorized",
+  "message": "Invalid API key"
+}
+```
+
+```json Response (403)
+{
+  "error": "Forbidden",
+  "message": "Plan limit exceeded"
+}
+```
+
+</CodeGroup>
+
+## Response
+
+### Success Response (201)
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | string | Unique identifier for the chatbot |
+| name | string | Name of the chatbot |
+| description | string | Description of the chatbot |
+| model | string | AI model being used |
+| temperature | number | Temperature setting |
+| language | string | Primary language |
+| createdAt | string | Creation timestamp |
+| status | string | Current status of the chatbot |
+
+### Error Responses
+
+| Status | Description |
+|--------|-------------|
+| 400 | Bad Request - Invalid input parameters |
+| 401 | Unauthorized - Invalid API key |
+| 403 | Forbidden - Plan limits exceeded |
+| 500 | Internal Server Error |

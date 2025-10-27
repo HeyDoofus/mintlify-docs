@@ -1,0 +1,73 @@
+---
+title: "FAQ"
+description: "Frequently Asked Questions about Doofus"
+---
+
+# Frequently Asked Questions
+
+## General Questions
+
+### What is Doofus?
+Doofus is an AI agent platform that allows you to create intelligent assistants trained on your business data.
+
+### How does Doofus work?
+Doofus uses advanced language models combined with your custom data to create AI agents that can understand and respond to user queries in a context-aware manner.
+
+### What can I build with Doofus?
+- Customer service chatbots
+- Knowledge base assistants
+- Sales support agents
+- Technical support bots
+- Lead generation agents
+- Data analysis assistants
+
+## Technical Questions
+
+### What programming languages do you support?
+Our SDKs support:
+- JavaScript/TypeScript
+- Python
+- Ruby
+- PHP
+- Go
+
+### How do I handle rate limits?
+```typescript
+// Example of handling rate limits
+try {
+  const response = await doofus.chat.create({
+    message: "Hello",
+    retry: true,
+    maxRetries: 3,
+    retryDelay: 1000
+  });
+} catch (error) {
+  if (error.code === 'rate_limit_exceeded') {
+    // Handle rate limit
+    await delay(error.retryAfter);
+  }
+}
+```
+
+### How secure is my data?
+- End-to-end encryption
+- SOC 2 Type II certified
+- GDPR compliant
+- Regular security audits
+
+## Billing Questions
+
+### What pricing plans do you offer?
+- Free Tier: Limited usage for testing
+- Pro: $49/month for growing businesses
+- Enterprise: Custom pricing for large-scale deployments
+
+### How does usage billing work?
+We bill based on:
+- Number of API calls
+- Training data volume
+- Custom model deployments
+- Support tier
+
+### Can I change plans anytime?
+Yes, you can upgrade or downgrade your plan at any time. Changes take effect on your next billing cycle.

@@ -1,0 +1,267 @@
+---
+title: "POST /chat"
+description: "Send a message to a chatbot and receive a response"
+openapi: "POST /chat"
+---
+
+# Chat with a chatbot
+
+> Send a message to a chatbot and receive a response. Supports streaming responses.
+Can continue existing conversations by providing a conversationId.
+
+## Base URL
+
+```bash
+POST https://api.doofus.com/v1/chat
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request Body
+
+<ParamField body="chatbotId" type="string" required>
+  ID of the chatbot to chat with
+  
+  Example: `ckl123abc456`
+</ParamField>
+
+<ParamField body="messages" type="array" required>
+  Array of messages in the conversation
+  
+  Example:
+  ```json
+  [
+    {
+      "role": "user",
+      "content": "Hello, I need help with my order"
+    }
+  ]
+  ```
+</ParamField>
+
+<ParamField body="conversationId" type="string">
+  ID of existing conversation to continue. If not provided, the conversation will not be saved
+  
+  Example: `conv_abc123`
+</ParamField>
+
+<ParamField body="contactId" type="string">
+  External ID of the contact/user
+  
+  Example: `user_123`
+</ParamField>
+
+<ParamField body="model" type="string">
+  AI model to use for the response
+  
+  Example: `gpt-4o-mini`
+
+  Available models:
+  - gpt-4-turbo
+  - gpt-4o
+  - gpt-4
+  - gpt-4o-mini
+  - gpt-4.1
+  - gpt-4.1-mini
+  - gpt-4.1-nano
+  - o3-mini
+  - o4-mini
+  - o3
+  - gpt-oss-120b
+  - gpt-oss-20b
+  - gpt-5
+  - gpt-5-mini
+  - gpt-5-nano
+  - claude-opus-4-1
+  - claude-sonnet-4
+  - claude-opus-4
+  - claude-3-7-sonnet
+  - claude-3-5-sonnet
+  - claude-3-haiku
+  - claude-3-opus
+  - gemini-1.5-flash
+  - gemini-1.5-pro
+  - gemini-2.0-flash
+  - gemini-2.0-pro
+  - gemini-2.5-flash
+  - grok-3
+  - grok-3-mini
+  - grok-4
+  - command-r
+  - command-r-plus
+  - command-a
+  - DeepSeek-V3
+  - DeepSeek-R1
+  - Llama-4-Scout-17B-16E-Instruct
+  - Llama-4-Maverick-17B-128E-Instruct-FP8
+  - kimi-k2
+</ParamField>
+
+<ParamField body="temperature" type="number">
+  Temperature setting for AI response creativity (0-1)
+  
+  Example: `0.7`
+</ParamField>
+
+<ParamField body="stream" type="boolean" default={false}>
+  Whether to stream the response
+</ParamField>
+
+## Example Request
+
+<CodeGroup>
+
+```bash Request
+curl -X POST https://api.doofus.com/v1/chat \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "chatbotId": "ckl123abc456",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, I need help with my order"
+      }
+    ],
+    "conversationId": "conv_abc123",
+    "contactId": "user_123",
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "stream": false
+  }'
+```
+
+```json Response (200)
+{
+  "text": "Hello! How can I help you today?"
+}
+```
+
+```text Response (200 - Streaming)
+Hello!
+How can
+I help
+you today?
+```
+
+```json Response (400)
+{
+  "message": "Invalid request data"
+}
+```
+
+```json Response (401)
+{
+  "message": "No API key provided."
+}
+```
+
+```json Response (403)
+{
+  "message": "Access denied or quota exceeded"
+}
+```
+
+```json Response (500)
+{
+  "message": "Internal server error"
+}
+```
+
+</CodeGroup>
+
+## Response
+
+### Success Response (200)
+
+For non-streaming requests:
+```json
+{
+  "text": "Hello! How can I help you today?"
+}
+```
+
+For streaming requests (`stream: true`):
+```text
+Text chunks streamed as they're generated...
+```
+
+### Error Responses
+
+| Status | Description |
+|--------|-------------|
+| 400 | Bad Request - Invalid input parameters |
+| 401 | Unauthorized - Invalid or missing API key |
+| 403 | Forbidden - Access denied or quota exceeded |
+| 500 | Internal Server Error |
+
+## SDK Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { DoofusAPI } from '@doofus/sdk';
+
+const doofus = new DoofusAPI('YOUR_API_KEY');
+
+// Non-streaming request
+const response = await doofus.chat.create({
+  chatbotId: 'ckl123abc456',
+  messages: [
+    {
+      role: 'user',
+      content: 'Hello!'
+    }
+  ],
+  model: 'gpt-4o-mini'
+});
+
+console.log(response.text);
+
+// Streaming request
+const stream = await doofus.chat.create({
+  chatbotId: 'ckl123abc456',
+  messages: [{ role: 'user', content: 'Hello!' }],
+  stream: true
+});
+
+for await (const chunk of stream) {
+  process.stdout.write(chunk);
+}
+```
+
+### Python
+
+```python
+from doofus import Doofus
+
+doofus = Doofus('YOUR_API_KEY')
+
+# Non-streaming request
+response = doofus.chat.create(
+    chatbot_id='ckl123abc456',
+    messages=[
+        {
+            'role': 'user',
+            'content': 'Hello!'
+        }
+    ],
+    model='gpt-4o-mini'
+)
+
+print(response.text)
+
+# Streaming request
+stream = doofus.chat.create(
+    chatbot_id='ckl123abc456',
+    messages=[{'role': 'user', 'content': 'Hello!'}],
+    stream=True
+)
+
+for chunk in stream:
+    print(chunk, end='', flush=True)
+```

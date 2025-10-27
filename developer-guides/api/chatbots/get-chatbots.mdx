@@ -1,0 +1,50 @@
+---
+title: "GET /chatbots"
+description: "Retrieve all chatbots"
+openapi: "GET /chatbots"
+---
+
+# Get all chatbots
+
+Retrieve a paginated list of chatbots for your account.
+
+## Base URL
+
+```bash
+GET https://api.doofus.com/v1/chatbots
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Query Parameters
+
+- `page` (integer) - Page number (default: 1)
+- `limit` (integer) - Items per page (default: 20)
+
+## Example Request
+
+```bash
+curl -X GET "https://api.doofus.com/v1/chatbots?page=1&limit=20" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (200)
+{
+  "data": [
+    { "id": "bot_abc123", "name": "Support Assistant", "status": "active" }
+  ],
+  "meta": { "page": 1, "limit": 20, "total": 1 }
+}
+```
+
+```json Response (401)
+{ "error": "Unauthorized", "message": "Invalid API key" }
+```
+
+```json Response (500)
+{ "error": "InternalServerError", "message": "Something went wrong" }
+```

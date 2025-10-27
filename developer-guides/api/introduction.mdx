@@ -1,0 +1,65 @@
+---
+title: "API Introduction"
+description: "Getting started with the Doofus API"
+---
+
+# API Reference
+
+Welcome to the Doofus API documentation. Our API enables you to integrate AI-powered chat capabilities into your applications.
+
+## Base URL
+
+```bash
+https://api.doofus.co/v1
+```
+
+## Authentication
+
+All API requests require authentication using Bearer tokens. Include your API key in the Authorization header:
+
+```bash
+Authorization: Bearer your_api_key_here
+```
+
+See the [Authentication](/developer-guides/api/authentication) page for more details.
+
+## Rate Limiting
+
+- Free tier: 60 requests per minute
+- Pro tier: 300 requests per minute
+- Enterprise tier: Custom limits
+
+When rate limited, the API will return a 429 Too Many Requests response.
+
+## Request Format
+
+All requests should be made with JSON payloads and include the following headers:
+
+```bash
+Content-Type: application/json
+Authorization: Bearer your_api_key_here
+```
+
+## Available Endpoints
+
+- [Chat](/developer-guides/api/chat) - Send messages to AI agents
+- [Models](/developer-guides/api/models) - List and select AI models
+- [Conversations](/developer-guides/api/conversations) - Manage chat history
+
+## Response Format
+
+Successful responses will have a 2xx status code and return JSON:
+
+```json
+{
+  "data": {
+    // Response data
+  },
+  "meta": {
+    "requestId": "req_123abc",
+    "timestamp": "2025-10-25T12:00:00Z"
+  }
+}
+```
+
+For error responses, see our [Error Handling](/developer-guides/api/errors) guide.

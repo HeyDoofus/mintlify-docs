@@ -1,0 +1,32 @@
+---
+title: "DELETE /chatbots/{id}/assets/icon"
+description: "Delete chatbot icon"
+openapi: "DELETE /chatbots/{id}/assets/icon"
+---
+
+# Delete chatbot icon
+
+Remove the chatbot's icon asset.
+
+## Base URL
+
+```bash
+DELETE https://api.doofus.com/v1/chatbots/{id}/assets/icon
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Example Request
+
+```bash
+curl -X DELETE https://api.doofus.com/v1/chatbots/bot_abc123/assets/icon \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (204)
+{ }
+```

@@ -1,0 +1,39 @@
+---
+title: "PATCH /chatbots/{id}/contacts/{contactId}"
+description: "Update a contact"
+openapi: "PATCH /chatbots/{id}/contacts/{contactId}"
+---
+
+# Update a contact
+
+Update contact fields such as name or email.
+
+## Base URL
+
+```bash
+PATCH https://api.doofus.com/v1/chatbots/{id}/contacts/{contactId}
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request Body
+
+- `name` (string)
+- `email` (string)
+
+## Example Request
+
+```bash
+curl -X PATCH https://api.doofus.com/v1/chatbots/bot_abc123/contacts/user_1 \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "Jane Doe" }'
+```
+
+```json Response (200)
+{ "contactId": "user_1", "name": "Jane Doe" }
+```

@@ -1,0 +1,59 @@
+title: "Chat"
+description: "Chat endpoints"
+---
+
+# API Reference
+
+The Chat section contains endpoints for sending messages and continuing conversations with chatbots.
+
+## Base URL
+
+```bash
+https://api.doofus.com/v1
+```
+
+## Authentication
+
+All API requests require authentication using Bearer tokens:
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Available Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | [/chat](/developer-guides/api/chat/post-chat) | Send messages to a chatbot |
+
+## Response Format
+
+Successful responses will have a 2xx status code and return JSON:
+
+```json
+{
+  "text": "Hello! How can I help you today?"
+}
+```
+
+For streaming responses, the server sends text chunks as they're generated.
+
+## Error Responses
+
+When an error occurs, you'll receive a JSON response with an error message:
+
+```json
+{
+  "message": "Error description"
+}
+```
+
+Common error status codes:
+- `400` - Bad Request
+- `401` - Unauthorized
+- `403` - Forbidden
+- `500` - Internal Server Error
+
+## Rate Limiting
+
+The API implements rate limiting based on your plan. When rate limited, you'll receive a 429 response.

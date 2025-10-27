@@ -1,0 +1,90 @@
+---
+title: "Authentication"
+description: "Secure your API requests with authentication"
+---
+
+# Authentication
+
+The Doofus API uses Bearer token authentication. You'll need to include your API key in the Authorization header of all requests.
+
+## API Keys
+
+### Obtaining an API Key
+
+1. Log in to the [Doofus Dashboard](https://dashboard.doofus.co)
+2. Navigate to Settings → API Keys
+3. Click "Create New API Key"
+4. Copy your API key and store it securely
+
+### API Key Format
+
+```bash
+doofus_live_xxxxxxxxxxxxxxxxxxxxxx
+```
+
+## Making Authenticated Requests
+
+### HTTP Header
+
+Include your API key in the Authorization header:
+
+```bash
+Authorization: Bearer doofus_live_xxxxxxxxxxxxxxxxxxxxxx
+```
+
+### Example Request
+
+```bash
+curl https://api.doofus.co/v1/chat \
+  -H "Authorization: Bearer doofus_live_xxxxxxxxxxxxxxxxxxxxxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "messages": [{
+      "role": "user",
+      "content": "Hello!"
+    }]
+  }'
+```
+
+## API Key Security
+
+- Never share your API keys
+- Don't commit API keys to version control
+- Use environment variables to store keys
+- Rotate keys periodically
+- Use different keys for development and production
+
+### Environment Variables
+
+```javascript
+// Node.js example
+require('dotenv').config();
+const apiKey = process.env.DOOFUS_API_KEY;
+```
+
+```python
+# Python example
+import os
+api_key = os.environ.get('DOOFUS_API_KEY')
+```
+
+## Key Types
+
+| Type | Description | Rate Limit |
+|------|-------------|------------|
+| Test | For development | 60 req/min |
+| Live | For production | 300 req/min |
+| Custom | Enterprise use | Custom |
+
+## Error Responses
+
+If authentication fails, you'll receive a 401 Unauthorized response:
+
+```json
+{
+  "error": {
+    "code": "unauthorized",
+    "message": "Invalid API key provided"
+  }
+}
+```

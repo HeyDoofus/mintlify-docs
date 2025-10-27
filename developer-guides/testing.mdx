@@ -1,0 +1,67 @@
+---
+title: "Testing"
+description: "Comprehensive testing strategies for Doofus implementations"
+---
+
+# Testing Guide
+
+## Test Types
+
+### 1. Unit Testing
+
+```typescript
+import { createAgent } from 'doofus/agent';
+
+describe('Agent Creation', () => {
+  test('creates agent with correct config', () => {
+    const agent = createAgent({
+      model: 'gpt-4',
+      temperature: 0.7
+    });
+    expect(agent).toBeDefined();
+    expect(agent.config.model).toBe('gpt-4');
+  });
+});
+```
+
+### 2. Integration Testing
+
+```typescript
+describe('API Integration', () => {
+  test('agent responds to messages', async () => {
+    const response = await agent.sendMessage('Hello');
+    expect(response.status).toBe(200);
+    expect(response.data).toBeDefined();
+  });
+});
+```
+
+### 3. Load Testing
+
+```typescript
+import { check } from 'k6';
+import http from 'k6/http';
+
+export default function() {
+  const res = http.post('https://api.doofus.ai/v1/chat', {
+    message: 'Test message'
+  });
+  check(res, {
+    'status is 200': (r) => r.status === 200
+  });
+}
+```
+
+## Test Environment Setup
+
+1. Local development testing
+2. Staging environment tests
+3. Production monitoring
+4. A/B testing capability
+
+## Best Practices
+
+- Write tests first (TDD)
+- Maintain test coverage
+- Regular test automation
+- Performance benchmarking

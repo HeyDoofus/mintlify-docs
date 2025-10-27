@@ -1,0 +1,38 @@
+---
+title: "PUT /chatbots/{id}/contacts/attributes/{name}"
+description: "Update custom attribute"
+openapi: "PUT /chatbots/{id}/contacts/attributes/{name}"
+---
+
+# Update custom attribute
+
+Update an existing custom attribute's schema.
+
+## Base URL
+
+```bash
+PUT https://api.doofus.com/v1/chatbots/{id}/contacts/attributes/{name}
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request Body
+
+- `type` (string)
+
+## Example Request
+
+```bash
+curl -X PUT https://api.doofus.com/v1/chatbots/bot_abc123/contacts/attributes/vip \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "type": "boolean" }'
+```
+
+```json Response (200)
+{ "name": "vip", "type": "boolean" }
+```

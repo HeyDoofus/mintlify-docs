@@ -1,0 +1,41 @@
+---
+title: "POST /chatbots/{id}/assets/icon"
+description: "Upload chatbot icon"
+openapi: "POST /chatbots/{id}/assets/icon"
+---
+
+# Upload chatbot icon
+
+Upload an icon image for the chatbot.
+
+## Base URL
+
+```bash
+POST https://api.doofus.com/v1/chatbots/{id}/assets/icon
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Form Data
+
+- `file` (file) - Image file (png/jpg)
+
+## Example Request
+
+```bash
+curl -X POST https://api.doofus.com/v1/chatbots/bot_abc123/assets/icon \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@./icon.png"
+```
+
+```json Response (201)
+{ "url": "https://cdn.doofus.com/assets/icon_bot_abc123.png" }
+```
+
+```json Response (400)
+{ "error": "InvalidFile", "message": "Unsupported file type" }
+```

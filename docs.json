@@ -11,60 +11,116 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Getting Started",
         "groups": [
           {
             "group": "Getting Started",
             "pages": [
-              "index",
-              "setup/installation",
-              "setup/development"
-            ]
-          },
-          {
-            "group": "Core Concepts",
-            "pages": [
-              "core/project-structure",
-              "core/typescript",
-              "core/biome",
-              "core/styling"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "index"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Developer Guides",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Implementation",
             "pages": [
-              "api-reference/introduction"
+              "developer-guides/overview",
+              "developer-guides/architecture",
+              "developer-guides/integrations",
+              "developer-guides/deployment"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "API Reference",
+            "icon": "code",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              {
+                "group": "Chat",
+                "icon": "message",
+                "pages": [
+                  "developer-guides/api/chat/post-chat"
+                ]
+              },
+              {
+                "group": "Chatbots",
+                "icon": "robot",
+                "pages": [
+                  "developer-guides/api/chatbots/create-chatbot",
+                  "developer-guides/api/chatbots/get-chatbots",
+                  "developer-guides/api/chatbots/delete-chatbot",
+                  "developer-guides/api/chatbots/update-chatbot",
+                  "developer-guides/api/chatbots/update-settings"
+                ]
+              },
+              {
+                "group": "Conversations",
+                "icon": "messages",
+                "pages": [
+                  "developer-guides/api/conversations/get-conversations"
+                ]
+              },
+              {
+                "group": "Leads",
+                "icon": "users",
+                "pages": [
+                  "developer-guides/api/leads/get-leads"
+                ]
+              },
+              {
+                "group": "Assets",
+                "icon": "folder",
+                "pages": [
+                  "developer-guides/api/assets/upload-icon",
+                  "developer-guides/api/assets/upload-profile-picture",
+                  "developer-guides/api/assets/delete-icon",
+                  "developer-guides/api/assets/delete-profile-picture"
+                ]
+              },
+              {
+                "group": "Contacts",
+                "icon": "address-book",
+                "pages": [
+                  "developer-guides/api/contacts/get-contacts",
+                  "developer-guides/api/contacts/create-contact",
+                  "developer-guides/api/contacts/get-contact",
+                  "developer-guides/api/contacts/delete-contact",
+                  "developer-guides/api/contacts/update-contact",
+                  "developer-guides/api/contacts/get-custom-attributes",
+                  "developer-guides/api/contacts/create-custom-attribute",
+                  "developer-guides/api/contacts/update-custom-attribute"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Best Practices",
+            "pages": [
+              "developer-guides/security",
+              "developer-guides/performance",
+              "developer-guides/testing"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Help & Support",
+        "groups": [
+          {
+            "group": "Support",
+            "pages": [
+              "support/getting-help",
+              "support/faq",
+              "support/troubleshooting"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "support/community-guidelines",
+              "support/contact"
             ]
           }
         ]

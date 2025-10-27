@@ -1,0 +1,98 @@
+---
+title: "AI Models"
+description: "Available AI models and their capabilities"
+---
+
+# AI Models
+
+Doofus supports a wide range of AI models for different use cases. Choose the model that best fits your needs based on capabilities, performance, and cost.
+
+## Available Models
+
+### GPT Series
+
+| Model | Description | Use Case | Token Limit |
+|-------|-------------|-----------|-------------|
+| gpt-4-turbo | Latest GPT-4 model | Complex reasoning | 128K |
+| gpt-4o | Optimized GPT-4 | General purpose | 64K |
+| gpt-4 | Standard GPT-4 | High accuracy | 32K |
+| gpt-4o-mini | Lightweight GPT-4 | Fast responses | 16K |
+| gpt-4.1 | Enhanced GPT-4 | Advanced tasks | 64K |
+| gpt-4.1-mini | Compact GPT-4.1 | Quick tasks | 16K |
+| gpt-4.1-nano | Ultra-light GPT-4.1 | Basic tasks | 8K |
+
+### Opus Series
+
+| Model | Description | Use Case | Token Limit |
+|-------|-------------|-----------|-------------|
+| o3-mini | Compact O3 | Fast inference | 16K |
+| o4-mini | Compact O4 | Balanced speed | 16K |
+| o3 | Standard O3 | General purpose | 32K |
+
+### Claude Series
+
+| Model | Description | Use Case | Token Limit |
+|-------|-------------|-----------|-------------|
+| claude-opus-4-1 | Latest Claude | Advanced tasks | 128K |
+| claude-sonnet-4 | Balanced Claude | General use | 64K |
+| claude-opus-4 | Standard Claude | Complex tasks | 32K |
+
+### Gemini Series
+
+| Model | Description | Use Case | Token Limit |
+|-------|-------------|-----------|-------------|
+| gemini-1.5-flash | Fast Gemini | Quick responses | 16K |
+| gemini-1.5-pro | Professional | Business use | 32K |
+| gemini-2.0-flash | Enhanced speed | Fast processing | 16K |
+| gemini-2.0-pro | Latest version | Advanced tasks | 64K |
+
+### Other Models
+
+- gpt-oss-120b
+- gpt-oss-20b
+- gpt-5
+- gpt-5-mini
+- gpt-5-nano
+- grok-3
+- grok-3-mini
+- grok-4
+- command-r
+- command-r-plus
+- command-a
+- DeepSeek-V3
+- DeepSeek-R1
+- Llama-4-Scout-17B-16E-Instruct
+- Llama-4-Maverick-17B-128E-Instruct-FP8
+- kimi-k2
+
+## Model Selection
+
+Choose your model in API requests using the `model` parameter:
+
+```json
+{
+  "chatbotId": "ckl123abc456",
+  "messages": [{
+    "role": "user",
+    "content": "Hello!"
+  }],
+  "model": "gpt-4o-mini"
+}
+```
+
+## Model Features
+
+| Feature | Description | Supported Models |
+|---------|-------------|------------------|
+| Streaming | Real-time responses | All models |
+| Long Context | Extended context window | GPT-4 series, Claude series |
+| Code Generation | Specialized for code | GPT-4, Claude-opus |
+| Multilingual | Multiple languages | All models |
+
+## Best Practices
+
+1. Start with smaller models for testing
+2. Use streaming for better UX
+3. Monitor token usage
+4. Consider cost vs. performance
+5. Cache responses when possible

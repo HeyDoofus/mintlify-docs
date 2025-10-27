@@ -1,0 +1,44 @@
+---
+title: "DELETE /chatbots/{id}"
+description: "Delete a chatbot"
+openapi: "DELETE /chatbots/{id}"
+---
+
+# Delete a chatbot
+
+Remove a chatbot and its configuration.
+
+## Base URL
+
+```bash
+DELETE https://api.doofus.com/v1/chatbots/{id}
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Path Parameters
+
+- `id` (string) - ID of the chatbot to delete
+
+## Example Request
+
+```bash
+curl -X DELETE https://api.doofus.com/v1/chatbots/bot_abc123 \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (204)
+{ }
+```
+
+```json Response (404)
+{ "error": "NotFound", "message": "Chatbot not found" }
+```
+
+```json Response (401)
+{ "error": "Unauthorized", "message": "Invalid API key" }
+```

@@ -1,0 +1,63 @@
+---
+title: "Developer Overview"
+description: "Overview of the Doofus development ecosystem and capabilities"
+---
+
+# Developer Overview
+
+Welcome to the Doofus developer documentation. This guide will help you understand how to work with Doofus AI agents effectively.
+
+## Core Concepts
+
+- **AI Agents**: Understanding the Doofus agent architecture
+- **Training Data**: How to prepare and manage training data
+- **Integration Points**: Available integration methods and APIs
+- **Customization**: Ways to extend and customize agent behavior
+
+## Development Stack
+
+Doofus is built with modern technologies:
+
+- Next.js for the frontend and API routes
+- TypeScript for type safety
+- TailwindCSS for styling
+- Biome for code quality
+
+## API Quick Start
+
+Here's a quick example of chatting with a Doofus AI agent:
+
+<CodeGroup>
+
+```bash Request
+curl -X POST https://api.doofus.com/v1/chat \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "chatbotId": "ckl123abc456",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What can you help me with?"
+      }
+    ],
+    "model": "gpt-4o-mini"
+  }'
+```
+
+```json Response (200)
+{
+  "text": "I can assist you with various tasks like answering questions, helping with code, analyzing data, and providing recommendations. Feel free to ask me anything!"
+}
+```
+
+</CodeGroup>
+
+See the [API Reference](/developer-guides/api/introduction) for detailed documentation of all available endpoints.
+
+## Next Steps
+
+1. Review the [Architecture Guide](/developer-guides/architecture)
+2. Understand [Integration Options](/developer-guides/integrations)
+3. Learn about [Deployment](/developer-guides/deployment)
+4. Follow our [Security Best Practices](/developer-guides/security)

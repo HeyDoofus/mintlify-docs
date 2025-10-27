@@ -1,0 +1,71 @@
+---
+title: "Deployment"
+description: "Learn how to deploy Doofus in various environments"
+---
+
+# Deployment Guide
+
+## Deployment Options
+
+### 1. Cloud Deployment
+
+Deploy Doofus on major cloud platforms:
+
+```bash
+# Deploy to Vercel
+vercel deploy
+
+# Deploy to AWS
+aws amplify push
+
+# Deploy to Google Cloud
+gcloud app deploy
+```
+
+### 2. Docker Deployment
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+### 3. Self-Hosted
+
+Requirements for self-hosting:
+
+- Linux server (Ubuntu 20.04+ recommended)
+- Node.js 18+
+- 4GB RAM minimum
+- SSD storage
+
+## Environment Setup
+
+```bash
+# Set required environment variables
+export DOOFUS_API_KEY=your_api_key
+export DATABASE_URL=your_database_url
+export NODE_ENV=production
+
+# Start the application
+npm run start
+```
+
+## Monitoring
+
+- Use built-in analytics dashboard
+- Integration with popular monitoring tools
+- Custom metric tracking
+- Error reporting and alerts
+
+## Scaling
+
+- Horizontal scaling with load balancers
+- Database sharding options
+- Caching strategies
+- CDN integration

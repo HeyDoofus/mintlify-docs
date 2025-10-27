@@ -1,0 +1,82 @@
+---
+title: "Troubleshooting"
+description: "Common issues and their solutions"
+---
+
+# Troubleshooting Guide
+
+## Common Issues
+
+### API Connection Issues
+
+```bash
+Error: Failed to connect to api.doofus.ai
+```
+
+**Possible Solutions:**
+1. Check your API key is correct
+2. Verify your internet connection
+3. Check our [status page](https://status.doofus.ai)
+4. Ensure you're using the correct endpoint
+
+### Rate Limiting
+
+```bash
+Error: Rate limit exceeded
+```
+
+**Solutions:**
+1. Implement exponential backoff
+2. Check your current usage
+3. Consider upgrading your plan
+4. Optimize your API calls
+
+### Training Errors
+
+```bash
+Error: Training failed - Invalid data format
+```
+
+**Solutions:**
+1. Verify your training data format
+2. Check file encoding (use UTF-8)
+3. Remove any malformed entries
+4. Ensure data meets minimum requirements
+
+## Debugging Tools
+
+### Log Collection
+
+```bash
+# Enable debug logging
+export DOOFUS_DEBUG=true
+
+# Run with verbose output
+doofus --verbose
+```
+
+### Health Checks
+
+```typescript
+// Check system health
+const health = await doofus.system.checkHealth();
+console.log(health.status);
+```
+
+## Common Error Codes
+
+| Code | Description | Solution |
+|------|-------------|----------|
+| 1001 | Authentication Failed | Check API key |
+| 1002 | Rate Limit Exceeded | Implement backoff |
+| 1003 | Invalid Input | Validate request data |
+| 1004 | Server Error | Contact support |
+
+## Getting Additional Help
+
+If you can't resolve your issue:
+
+1. Check our [FAQ](/support/faq)
+2. Post in our [Community Forum](https://community.doofus.ai)
+3. Contact [Support](/support/contact)
+4. Join our [Discord](https://discord.gg/doofus)

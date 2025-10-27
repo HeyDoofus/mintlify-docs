@@ -1,0 +1,47 @@
+---
+title: "POST /chatbots/{id}/settings"
+description: "Update chatbot settings"
+openapi: "POST /chatbots/{id}/settings"
+---
+
+# Update chatbot settings
+
+Update advanced settings for a chatbot (e.g., default context, retention policy).
+
+## Base URL
+
+```bash
+POST https://api.doofus.com/v1/chatbots/{id}/settings
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Request Body (example)
+
+```json
+{
+  "defaultContext": "support",
+  "saveConversations": true
+}
+```
+
+## Example Request
+
+```bash
+curl -X POST https://api.doofus.com/v1/chatbots/bot_abc123/settings \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "saveConversations": true }'
+```
+
+```json Response (200)
+{ "id": "bot_abc123", "settings": { "saveConversations": true } }
+```
+
+```json Response (401)
+{ "error": "Unauthorized", "message": "Invalid API key" }
+```

@@ -1,0 +1,129 @@
+---
+title: "Error Handling"
+description: "Understanding and handling API errors"
+---
+
+# Error Handling
+
+Learn about the different types of errors you might encounter when using the Doofus API and how to handle them appropriately.
+
+## Error Format
+
+All API errors follow this format:
+
+```json
+{
+  "error": {
+    "code": "error_code",
+    "message": "Human-readable error message",
+    "details": {
+      // Additional error details if available
+    }
+  }
+}
+```
+
+## HTTP Status Codes
+
+| Status Code | Description | Common Causes |
+|-------------|-------------|---------------|
+| 400 | Bad Request | Invalid parameters |
+| 401 | Unauthorized | Invalid API key |
+| 403 | Forbidden | Quota exceeded |
+| 404 | Not Found | Invalid resource ID |
+| 429 | Too Many Requests | Rate limit exceeded |
+| 500 | Internal Server Error | Server issues |
+
+## Common Error Codes
+
+### Authentication Errors
+
+| Code | Description | Solution |
+|------|-------------|----------|
+| invalid_api_key | Invalid API key | Check your API key |
+| expired_key | API key expired | Renew your API key |
+| unauthorized | Missing authorization | Include API key |
+
+### Request Errors
+
+| Code | Description | Solution |
+|------|-------------|----------|
+| invalid_params | Invalid parameters | Check request format |
+| missing_field | Required field missing | Add required field |
+| invalid_model | Invalid model specified | Use supported model |
+
+### Rate Limiting
+
+| Code | Description | Solution |
+|------|-------------|----------|
+| rate_limit | Too many requests | Implement backoff |
+| quota_exceeded | Monthly quota exceeded | Upgrade plan |
+
+## Error Handling Examples
+
+### JavaScript/TypeScript
+
+```typescript
+try {
+  const response = await doofus.chat.create({
+    chatbotId: 'ckl123abc456',
+    messages: [{ role: 'user', content: 'Hello' }]
+  });
+} catch (error) {
+  if (error.status === 429) {
+    // Handle rate limiting
+    await delay(error.retryAfter);
+  } else if (error.status === 401) {
+    // Handle authentication error
+    console.error('Invalid API key');
+  } else {
+    // Handle other errors
+    console.error(error.message);
+  }
+}
+```
+
+### Python
+
+```python
+try:
+    response = doofus.chat.create(
+        chatbot_id='ckl123abc456',
+        messages=[{'role': 'user', 'content': 'Hello'}]
+    )
+except doofus.RateLimitError as e:
+    # Handle rate limiting
+    time.sleep(e.retry_after)
+except doofus.AuthError as e:
+    # Handle authentication error
+    print('Invalid API key')
+except doofus.APIError as e:
+    # Handle other errors
+    print(e.message)
+```
+
+## Best Practices
+
+1. Always implement error handling
+2. Use exponential backoff for rate limits
+3. Log errors for debugging
+4. Monitor error rates
+5. Handle errors gracefully in UI
+
+## Debugging Tools
+
+### Request ID
+
+Each response includes a unique request ID for debugging:
+
+```json
+{
+  "error": {
+    "code": "rate_limit",
+    "message": "Too many requests",
+    "requestId": "req_123abc"
+  }
+}
+```
+
+Use this ID when contacting support.

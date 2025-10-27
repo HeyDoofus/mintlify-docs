@@ -1,0 +1,200 @@
+---
+title: "Chat API"
+description: "Send messages to a chatbot and receive responses"
+---
+
+# Chat API
+
+Send messages to a chatbot and receive responses. Supports streaming responses and conversation continuity.
+
+## Send a Message
+
+<CodeGroup>
+
+```bash Request
+curl -X POST https://api.doofus.co/v1/chat \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "chatbotId": "ckl123abc456",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, I need help with my order"
+      }
+    ],
+    "conversationId": "conv_abc123",
+    "contactId": "user_123",
+    "model": "gpt-4o-mini",
+    "temperature": 0.7,
+    "stream": false
+  }'
+```
+
+```json Response
+{
+  "text": "Hello! How can I help you today?"
+}
+```
+
+</CodeGroup>
+
+## Request Parameters
+
+<ParamField body="chatbotId" type="string" required>
+  ID of the chatbot to chat with
+</ParamField>
+
+<ParamField body="messages" type="array" required>
+  Array of message objects in the conversation. Each message must have:
+  - `role`: Either "user" or "assistant"
+  - `content`: The message text
+</ParamField>
+
+<ParamField body="conversationId" type="string">
+  ID of existing conversation to continue. If not provided, the conversation will not be saved
+</ParamField>
+
+<ParamField body="contactId" type="string">
+  External ID of the contact/user
+</ParamField>
+
+<ParamField body="model" type="string">
+  AI model to use for the response. See [Models](/developer-guides/api/models) for available options
+</ParamField>
+
+<ParamField body="temperature" type="number">
+  Temperature setting for AI response creativity (0-1)
+</ParamField>
+
+<ParamField body="stream" type="boolean" default="false">
+  Whether to stream the response
+</ParamField>
+
+## Response
+
+### Success Response
+
+```json
+{
+  "text": "Hello! How can I help you today?"
+}
+```
+
+### Streaming Response
+
+When `stream: true`, the response will be streamed as text/plain chunks:
+
+```text
+Hello!
+How can
+I help
+you today?
+```
+
+## Error Responses
+
+### 400 Bad Request
+
+```json
+{
+  "message": "Invalid request data"
+}
+```
+
+### 401 Unauthorized
+
+```json
+{
+  "message": "No API key provided."
+}
+```
+
+### 403 Forbidden
+
+```json
+{
+  "message": "Access denied or quota exceeded"
+}
+```
+
+### 500 Internal Server Error
+
+```json
+{
+  "message": "Internal server error"
+}
+```
+
+## Code Examples
+
+### JavaScript/TypeScript
+
+```typescript
+import { DoofusAPI } from '@doofus/sdk';
+
+const doofus = new DoofusAPI('your_api_key');
+
+const response = await doofus.chat.create({
+  chatbotId: 'ckl123abc456',
+  messages: [
+    {
+      role: 'user',
+      content: 'Hello!'
+    }
+  ],
+  model: 'gpt-4o-mini'
+});
+
+console.log(response.text);
+```
+
+### Python
+
+```python
+from doofus import Doofus
+
+doofus = Doofus('your_api_key')
+
+response = doofus.chat.create(
+    chatbot_id='ckl123abc456',
+    messages=[
+        {
+            'role': 'user',
+            'content': 'Hello!'
+        }
+    ],
+    model='gpt-4o-mini'
+)
+
+print(response.text)
+```
+
+## Streaming Example
+
+### JavaScript/TypeScript
+
+```typescript
+const stream = await doofus.chat.create({
+  chatbotId: 'ckl123abc456',
+  messages: [{ role: 'user', content: 'Hello!' }],
+  stream: true
+});
+
+for await (const chunk of stream) {
+  process.stdout.write(chunk);
+}
+```
+
+### Python
+
+```python
+stream = doofus.chat.create(
+    chatbot_id='ckl123abc456',
+    messages=[{'role': 'user', 'content': 'Hello!'}],
+    stream=True
+)
+
+for chunk in stream:
+    print(chunk, end='', flush=True)
+```

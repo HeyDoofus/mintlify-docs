@@ -1,0 +1,32 @@
+---
+title: "GET /chatbots/{id}/contacts"
+description: "List contacts for a chatbot"
+openapi: "GET /chatbots/{id}/contacts"
+---
+
+# Get contacts for a chatbot
+
+Retrieve contacts associated with a chatbot.
+
+## Base URL
+
+```bash
+GET https://api.doofus.com/v1/chatbots/{id}/contacts
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Example Request
+
+```bash
+curl -X GET https://api.doofus.com/v1/chatbots/bot_abc123/contacts \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (200)
+{ "data": [ { "contactId": "user_1", "email": "user@example.com" } ] }
+```

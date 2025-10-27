@@ -1,0 +1,49 @@
+---
+title: "POST /chatbots/{id}"
+description: "Update a chatbot"
+openapi: "POST /chatbots/{id}"
+---
+
+# Update a chatbot
+
+Update chatbot metadata like name, description, and model.
+
+## Base URL
+
+```bash
+POST https://api.doofus.com/v1/chatbots/{id}
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Path Parameters
+
+- `id` (string) - ID of the chatbot to update
+
+## Request Body
+
+- `name` (string)
+- `description` (string)
+- `model` (string)
+- `temperature` (number)
+
+## Example Request
+
+```bash
+curl -X POST https://api.doofus.com/v1/chatbots/bot_abc123 \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "name": "New Name", "temperature": 0.5 }'
+```
+
+```json Response (200)
+{ "id": "bot_abc123", "name": "New Name", "temperature": 0.5 }
+```
+
+```json Response (400)
+{ "error": "ValidationError", "message": "Invalid fields" }
+```

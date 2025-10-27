@@ -1,0 +1,32 @@
+---
+title: "GET /chatbots/{id}/contacts/attributes/schema"
+description: "Get custom attributes schema"
+openapi: "GET /chatbots/{id}/contacts/attributes/schema"
+---
+
+# Get custom attributes schema
+
+Retrieve the schema for custom contact attributes.
+
+## Base URL
+
+```bash
+GET https://api.doofus.com/v1/chatbots/{id}/contacts/attributes/schema
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Example Request
+
+```bash
+curl -X GET https://api.doofus.com/v1/chatbots/bot_abc123/contacts/attributes/schema \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (200)
+{ "attributes": [ { "name": "vip", "type": "boolean" } ] }
+```

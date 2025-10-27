@@ -1,0 +1,38 @@
+---
+title: "GET /chatbots/{id}/leads"
+description: "Get leads for a chatbot"
+openapi: "GET /chatbots/{id}/leads"
+---
+
+# Get leads for a chatbot
+
+Retrieve leads collected by a chatbot.
+
+## Base URL
+
+```bash
+GET https://api.doofus.com/v1/chatbots/{id}/leads
+```
+
+## Authentication
+
+```bash
+Authorization: Bearer YOUR_API_KEY
+```
+
+## Example Request
+
+```bash
+curl -X GET https://api.doofus.com/v1/chatbots/bot_abc123/leads \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+```json Response (200)
+{
+  "data": [ { "leadId": "lead_1", "email": "user@example.com" } ]
+}
+```
+
+```json Response (401)
+{ "error": "Unauthorized", "message": "Invalid API key" }
+```

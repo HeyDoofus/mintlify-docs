@@ -1,0 +1,64 @@
+---
+title: "Integrations"
+description: "Learn how to integrate Doofus with your applications"
+---
+
+# Integration Guide
+
+## Available Integration Methods
+
+### 1. REST API
+
+```typescript
+// Example API call
+const response = await fetch('https://api.doofus.ai/v1/chat', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer YOUR_API_KEY'
+  },
+  body: JSON.stringify({
+    message: 'Hello, Doofus!',
+    context: 'customer-support'
+  })
+});
+```
+
+### 2. WebSocket Connection
+
+```typescript
+const ws = new WebSocket('wss://api.doofus.ai/v1/ws');
+ws.onmessage = (event) => {
+  const response = JSON.parse(event.data);
+  console.log('Received:', response);
+};
+```
+
+### 3. Iframe Embed
+
+```html
+<iframe
+  src="https://embed.doofus.ai/chat?token=YOUR_TOKEN"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+```
+
+## Platform-Specific SDKs
+
+- Node.js SDK
+- Python SDK
+- React Components
+- WordPress Plugin
+- Shopify App
+
+## Authentication
+
+All integrations require an API key. Obtain yours from the [Doofus Dashboard](https://dashboard.doofus.ai).
+
+## Rate Limits
+
+- Free tier: 100 requests/hour
+- Pro tier: 1000 requests/hour
+- Enterprise: Custom limits
