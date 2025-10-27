@@ -2,12 +2,13 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Doofus Documentation",
+  "logo": "/logo/doofus_logo.png",
   "colors": {
     "primary": "#000000",
     "light": "#666666",
     "dark": "#000000"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/logo/doofus_logo.png",
   "navigation": {
     "tabs": [
       {
@@ -129,10 +130,6 @@
     "global": {
       "anchors": []
     }
-  },
-  "logo": {
-    "light": "/logo/doofus-light.svg",
-    "dark": "/logo/doofus-dark.svg"
   },
   "navbar": {
     "links": [
